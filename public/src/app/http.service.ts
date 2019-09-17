@@ -23,8 +23,18 @@ export class HttpService {
     // tempObservable.subscribe(data => console.log("here is the id deets:", data));
   }
   deleteTask(id) {
-    let tempObservable = this._http.delete(`/tasks/${id}`)
-    tempObservable.subscribe(data => console.log("here is the id we'll delete:", data));
+    return this._http.delete(`/tasks/${id}`)
+    // let tempObservable = this._http.delete(`/tasks/${id}`)
+    // tempObservable.subscribe(data => console.log("here is the id we'll delete:", data));
+  }
+  postTask(newTask) {
+    return this._http.post('/tasks/', newTask)
+    // let tempObservable = this._http.post('/tasks/', newTask)
+    // tempObservable.subscribe(data => console.log("we have a new task!", data));
+  }
+  updateTask(id, editTask) {
+    console.log(editTask);
+    return this._http.put(`/tasks/${id}`, editTask)
   }
 
 }
