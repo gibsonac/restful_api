@@ -11,7 +11,51 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </header>
-<div class="container">
+
+<!-- THE INTERACTIVE ASSIGNMENT SECTION -->
+<h1 class="text-center">Restful Tasks API</h1>
+<button *ngIf="dontShow; else elseBlock" (click)="ButtonShowAll()">Show all!</button>
+<ng-template #elseBlock>
+  <div class="container">
+    <h1 class="text-center">All the tasks:</h1>
+    <div class="container" style="border: 2px solid blue;">
+      <ul>
+        <li *ngFor="let task of tasks">{{task.title}} <button (click)="taskToShow(task)">SHOW</button></li>
+      </ul>
+    </div>
+  </div>
+  <div class="root">
+    <h1 class="text-center">The task:</h1>
+  </div>
+  <div class="container" style="border: 2px solid green; min-height: 30px;">
+    <app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task>
+  </div>
+</ng-template>
+<!-- <div class="form-group">
+    <label>Enter ID </label>
+    <input (keyup)="onKey($event)" type="text" class="form-control">
+    <div>
+      <p>{{typedTask.title}}</p>
+      <p>{{typedTask.desc}}</p>
+    </div>
+  </div> -->
+
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+
+<router-outlet></router-outlet>
+
+<!-- THE CRUD OPPERATIONS ASSIGNMENT SECTION -->
+<!-- <div class="container">
   <div class="row">
     <div class="col col-md-8">
       <div *ngIf="haveErrors">
@@ -73,55 +117,4 @@
 
 
   </div>
-</div>
-<!-- <div class="form-group">
-    <label>Enter ID </label>
-    <input (keyup)="onKey($event)" type="text" class="form-control">
-    <div>
-      <p>{{typedTask.title}}</p>
-      <p>{{typedTask.desc}}</p>
-    </div>
-  </div> -->
-
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-
-<router-outlet></router-outlet>
-
-<!-- THE INTERACTIVE ASSIGNMENT SECTION -->
-<!-- <h1 class="text-center">Restful Tasks API</h1>
-<button *ngIf="dontShow; else elseBlock" (click)="ButtonShowAll()">Show all!</button>
-<ng-template #elseBlock>
-  <div class="container">
-    <h1 class="text-center">All the tasks:</h1>
-    <div class="container" style="border: 2px solid blue;">
-      <ul>
-        <li *ngFor="let task of tasks">{{task.title}} <button (click)="ButtonShowThis(task._id)">SHOW</button></li>
-      </ul>
-    </div>
-  </div>
-  <h1 class="text-center">The task:</h1>
-  <div class="container" style="border: 2px solid green; min-height: 30px;">
-
-    <p>{{task.title}}</p>
-    <p>{{task.desc}}</p>
-
-  </div>
-</ng-template>
-<form>
-  <div class="form-group">
-    <label>Enter ID </label>
-    <input (keyup)="onKey($event)" type="text" class="form-control">
-    <div>
-      <p>{{typedTask.title}}</p>
-      <p>{{typedTask.desc}}</p>
-    </div>
-  </div> -->
+</div> -->

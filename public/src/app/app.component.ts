@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
+import { temporaryAllocator } from '@angular/compiler/src/render3/view/util';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
   haveErrors: boolean = false;
   // errors: String[] = [];
   errors: String = '';
+  selectedTask: any;
 
   constructor(private _httpService: HttpService) {
   }
@@ -85,6 +87,9 @@ export class AppComponent implements OnInit {
       console.log("update complete:", data)
       this.getTasksFromService();
     });
+  }
+  taskToShow(task){
+    this.selectedTask = task;
   }
 }
 
