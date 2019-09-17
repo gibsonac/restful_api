@@ -10,8 +10,11 @@ import { HttpService } from './http.service';
 export class AppComponent implements OnInit {
   title = 'app';
   tasks: any = [];
-  id: string = '5d8009d658724b74cf47f1ad';
+  id: string = '';
   task: any = {};
+  dontShow: boolean = true;
+  // typedMessage: string = "";
+  typedTask: any = {};
 
   constructor(private _httpService: HttpService) {
   }
@@ -33,5 +36,22 @@ export class AppComponent implements OnInit {
       console.log("here is the id deets:", data)
       this.task = data;
     });
+  }
+  ButtonShowAll(){
+    this.dontShow = false;
+  }
+  ButtonShowThis(id){
+    console.log(id);
+    this.getTaskFromService(id);
+  }
+  onKey(event){
+    console.log(event);
+    // this.typedMessage += event.target.value;
+    let tempObservable = this._httpService.getTask(event.target.value)
+    tempObservable.subscribe(data => {
+      if(data){
+        this.typedTask = data;
+      }
+    })
   }
 }
