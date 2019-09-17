@@ -6,9 +6,9 @@ let taskSchema = new Schema({
     title: {
         type: String,
         trim: true,
-        unique: true, // unique? TRUE?
+        unique: true,// unique? TRUE?
         required: [true, "You need a title for your task"],
-        minlength: [4, "Title length must be above than 4"]
+        minlength: [4, "Title length must be longer than 4 characters"]
     },
     desc: {
         type: String,

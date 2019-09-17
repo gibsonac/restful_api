@@ -16,6 +16,9 @@ export class AppComponent implements OnInit {
   typedTask: any = {};
   newTask: any;
   editTask: any;
+  haveErrors: boolean = false;
+  // errors: String[] = [];
+  errors: String = '';
 
   constructor(private _httpService: HttpService) {
   }
@@ -33,6 +36,7 @@ export class AppComponent implements OnInit {
     })
   }
   getTaskFromService(id) {
+
     let tempObservable = this._httpService.getTask(id)
     tempObservable.subscribe(data => {
       console.log("here is the id deets:", data)
@@ -42,9 +46,22 @@ export class AppComponent implements OnInit {
   OnSubmit() {
     let tempObservable = this._httpService.postTask(this.newTask)
     tempObservable.subscribe(data => {
-      console.log("here is the new addition:", data)
-      this.newTask = { title: "", desc: "" }
-      this.getTasksFromService();
+      console.log(data)
+      if (data.length > 0) {
+        this.errors = data;
+        // this.errors = data[0];
+        console.log("my errors:", this.errors);
+        //   this.errors.push(data[0]);
+        this.haveErrors = true;
+        //   console.log(this.errors);
+      }
+      else {
+        this.errors = "";
+        console.log("here is the new addition:", data)
+        this.newTask = { title: "", desc: "" }
+        this.getTasksFromService();
+      }
+
     })
   }
   ButtonDelete(id) {
